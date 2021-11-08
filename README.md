@@ -1,9 +1,6 @@
 # Personal Expense
 
-A new Flutter project.
+A Practice Project
 
-## Getting Started
-This project is a starting point for a Flutter application.
-
-#Description
+# Description
 This app helps you to manage your daily life expenses

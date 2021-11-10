@@ -36,12 +36,12 @@ class _HomePageState extends State<HomePage> {
 
   final List<Transaction> transactions = [];
 
-  void addTransaction(String title, double amount) {
+  void addTransaction(String title, double amount,DateTime date) {
     final newTransaction = Transaction(
         title: title,
         id: DateTime.now().toString(),
         amount: amount,
-        date: DateTime.now());
+        date: date);
     setState(() {
       transactions.add(newTransaction);
     });
@@ -53,6 +53,14 @@ class _HomePageState extends State<HomePage> {
         builder: (wCtx) {
           return NewTransaction(addTransaction);
         });
+  }
+
+  void deleteTransaction(String id){
+    setState(() {
+      transactions.removeWhere((txn){
+      return txn.id == id;
+      });
+    });
   }
 
   List<Transaction> get recentTransactions{
@@ -74,7 +82,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Chart(recentTransactions),
-            TransactionList(transactions)
+            TransactionList(transactions,deleteTransaction),
           ],
         ),
       ),
